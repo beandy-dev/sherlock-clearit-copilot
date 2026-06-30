@@ -66,6 +66,12 @@ O cliente validou que o output do agente deve conter:
 3. **Fonte** — de onde veio a sugestão (ticket #X, KB #Y, documentação do fabricante Z)
 4. **Troubleshooting** (quando necessário) — se a descrição for vaga, sugerir passos de investigação/coleta de logs antes de propor solução
 
+## Especificações Ativas
+
+| Feature | História de Usuário | Status |
+|---------|-------------------|--------|
+| F-01: Copiloto de Suporte L1 | Como analista de suporte L1, quero receber sugestões automáticas de diagnóstico e resolução com base nos logs e na base de conhecimento da empresa, para que eu possa resolver chamados com mais agilidade, precisão e sem depender exclusivamente dos analistas de níveis superiores. | Pronto para Dev |
+
 ## Backlog de Features (prioridade validada pelo cliente)
 
 | # | Feature | Valor | Status |
