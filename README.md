@@ -1,1 +1,1 @@
-# sherlock-clearit-copilot
+# Sherlock ClearIt Copilot
