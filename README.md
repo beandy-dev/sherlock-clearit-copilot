@@ -18,15 +18,36 @@ Um copiloto que:
 
 O analista **sempre** valida antes de aplicar qualquer sugestão.
 
+## Fluxo do Sherlock
+
+```mermaid
+flowchart TD
+    A[Analista L1 recebe chamado] --> B[FreshService]
+    B --> C[Sherlock Copilot]
+    C --> D[Busca semântica em tickets e KBs]
+    D --> E[Gemini / Vertex AI]
+    E --> F[Diagnóstico provável + soluções + fontes]
+    F --> G[Analista revisa]
+    G --> H[Resposta ao cliente]
+```
+
+1. O analista recebe ou consulta um chamado no FreshService.
+2. O Sherlock recebe a descrição, logs ou sintomas informados no ticket.
+3. O texto é convertido em embedding para permitir busca por significado.
+4. A busca semântica recupera tickets antigos, KBs e documentos técnicos semelhantes.
+5. O Gemini recebe o contexto encontrado e gera diagnóstico, possíveis soluções e fontes.
+6. O analista valida, edita ou rejeita a sugestão antes de responder ao cliente.
+
 ## Estrutura do Repositório
 
 ```
-docs/
-├── business-context-lite.md          # Especificação de produto
+./
+├── README.md                         # Visão geral do projeto
+├── business-context-lite.md          # Especificação de produto e Sprint 1
 └── knowledge-base/
     ├── freshservice-api.md           # Pesquisa: API do FreshService
-    ├── busca-semantica-rag.md        # Pesquisa: Arquitetura RAG + Vertex AI
-    └── dados-ficticios.md            # Pesquisa: Geração de dados de teste
+    ├── semantic-search-rag.md        # Pesquisa: Arquitetura RAG + Vertex AI
+    └── fake-data.md                  # Pesquisa: Geração de dados de teste
 ```
 
 ## Stack Planejada
@@ -50,6 +71,37 @@ docs/
 ## Status
 
 **Sprint 1 (Descoberta):** ✅ Concluído — Feature "Pronto para Dev"
+
+## Validação do Escopo
+
+**Status:** Aprovado para desenvolvimento da PoC/MVP
+
+**Sprint:** 1 — Descoberta e documentação
+
+**Data da validação:** 25/06/2026 (Sprint de Validação com ClearIT)
+
+**Aprovado por:** Alexandre (Gestor de Operações, ClearIT) e Beatriz (Analista de Suporte, ClearIT)
+
+**Escopo do MVP**
+- Busca semântica em chamados encerrados.
+- Consulta em bases de conhecimento internas.
+- Busca em documentação técnica de fabricantes.
+- Geração de diagnóstico provável com indicação das fontes utilizadas.
+- Sugestão de troubleshooting quando a descrição do chamado for vaga ou insuficiente.
+
+**Fora do escopo**
+- Integração direta com ambiente produtivo da ClearIT durante o desenvolvimento.
+- Execução automática de ações sem aprovação humana.
+- Uso de dados reais de clientes sem anonimização.
+- Substituição do analista humano na tomada de decisão.
+
+**Restrições principais**
+- Conformidade com LGPD.
+- Uso de dados fictícios ou anonimizados no desenvolvimento.
+- Atuação consultiva do copiloto, sempre com validação humana.
+
+**Próxima revisão:** Sprint 2, antes da implementação da PoC.
+
 
 ---
 

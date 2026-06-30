@@ -8,6 +8,30 @@ Centralizar e tornar acessível o conhecimento técnico da ClearIT no momento do
 
 Os **analistas de suporte Nível 1** da ClearIT. Eles são a primeira linha de atendimento e enfrentam maior dificuldade para realizar diagnósticos assertivos porque o conhecimento necessário está disperso em múltiplas fontes. Os **clientes da ClearIT** sofrem o impacto indireto: tempo de resolução maior e, em casos críticos, indisponibilidade prolongada de infraestrutura.
 
+
+## Persona
+
+### Felipe — Analista de Suporte L1
+
+**Cargo:** Analista de Suporte Nível 1
+
+**Contexto**
+Responsável pelo primeiro atendimento técnico da ClearIT. Trabalha diariamente no FreshService analisando chamados relacionados a infraestrutura, redes, backup, virtualização e servidores. Precisa consultar diferentes fontes de informação para diagnosticar incidentes com agilidade e manter os SLAs sob controle.
+
+**Principais dores**
+- Gasta mais tempo procurando informações do que aplicando soluções.
+- O mesmo incidente pode aparecer com títulos diferentes em chamados antigos.
+- Precisa consultar múltiplas bases de conhecimento, tickets antigos e documentações externas.
+- Escala chamados para L2/L3 quando não consegue localizar rapidamente soluções já existentes.
+- Tem dificuldade para padronizar respostas técnicas quando o histórico está espalhado.
+
+**Objetivos**
+- Resolver mais chamados diretamente no L1.
+- Reduzir o tempo médio de resolução (MTTR/TMR).
+- Receber sugestões de diagnóstico acompanhadas da fonte utilizada.
+- Padronizar as respostas enviadas aos clientes.
+- Ganhar autonomia técnica sem depender sempre de analistas seniores.
+
 ## Dores Priorizadas
 
 **Dor 1 — Dificuldade no acesso e consulta do conhecimento técnico**
@@ -74,13 +98,15 @@ O cliente validou que o output do agente deve conter:
 
 ## Backlog de Features (prioridade validada pelo cliente)
 
-| # | Feature | Valor | Status |
-|---|---------|-------|--------|
-| 1 | Busca inteligente em chamados encerrados (busca semântica) | Maior valor — prioridade #1 da Bia | Pronto para Dev |
-| 2 | Consulta em KBs internos do FreshService | Alto | Pronto para Dev |
-| 3 | Busca em documentação de fabricantes na web | Médio-Alto | Pronto para Dev |
-| 4 | Sugestão de diagnóstico + soluções com fonte | Alto | Pronto para Dev |
-| 5 | Sugestão de troubleshooting quando descrição é vaga | Médio | Pronto para Dev |
+| ID | Feature | Valor | Prioridade | Estado | Responsável |
+|----|---------|-------|------------|--------|-------------|
+| F-01 | Busca inteligente em chamados encerrados (busca semântica) | Maior valor — prioridade #1 da Bia | Alta | 🔲 Não iniciado | Equipe Tech |
+| F-02 | Consulta em KBs internos do FreshService | Alto | Alta | 🔲 Não iniciado | Equipe Tech |
+| F-03 | Busca em documentação de fabricantes na web | Médio-Alto | Média-Alta | 🔲 Não iniciado | Equipe Tech |
+| F-04 | Sugestão de diagnóstico + soluções com fonte | Alto | Alta | 🔲 Não iniciado | Equipe Tech |
+| F-05 | Sugestão de troubleshooting quando descrição é vaga | Médio | Média | 🔲 Não iniciado | Equipe Tech |
+
+> Legenda: ✅ Concluído · 🔄 Em progresso · 🔲 Não iniciado · ⛔ Bloqueado
 
 ## Riscos Identificados
 
