@@ -12,6 +12,8 @@ O ClearIT Copilot é um serviço de IA que recebe a descrição de um problema d
 
 O analista sempre valida antes de agir — o sistema é consultivo, nunca executa ações automaticamente.
 
+> **Nota de design:** A interface da POC foi intencionalmente inspirada na UI clássica do FreshService para demonstrar como o Copilot se integraria ao fluxo de trabalho real do analista. Não é produto oficial da Freshworks.
+
 ---
 
 ## Funcionalidades
@@ -64,7 +66,7 @@ clearit-copilot/
 ├── services/
 │   ├── masking.js             # Pipeline DLP/LGPD (14 regras)
 │   └── rag.js                 # RAG: embeddings, busca semântica, fallback por tokens
-├── public/                    # Frontend (simulação de FreshService)
+├── public/                    # Frontend (design inspirado na UI do FreshService)
 │   ├── index.html
 │   ├── app.js
 │   └── styles.css
