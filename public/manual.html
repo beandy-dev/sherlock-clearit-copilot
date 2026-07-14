@@ -68,6 +68,7 @@ pre { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; paddin
     <li><a href="#nao-funciona">O que Ainda Não Está Funcionando</a></li>
     <li><a href="#proximos-passos">Próximos Passos e Evolução</a></li>
     <li><a href="#equipe">Equipe e Repositórios</a></li>
+    <li><a href="#glossario">Glossário</a></li>
   </ol>
 </div>
 
@@ -79,6 +80,11 @@ pre { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; paddin
 <p>O sistema é <strong>consultivo</strong>: ele sugere diagnósticos e ações, mas a decisão final é sempre do analista humano. Nenhuma ação é executada automaticamente.</p>
 
 <h3>Como o sistema resolve o problema</h3>
+
+<div style="text-align:center;margin:20px 0;">
+  <img src="Analista%20Problem%20Diagnosis-2026-07-10-051032.svg" alt="Fluxo de diagnóstico do analista" style="max-width:420px;width:100%;">
+  <p style="font-size:11px;color:#94a3b8;margin-top:8px;">Diagrama: fluxo conceitual do diagnóstico (etapas finais como Firestore e Fine-tuning são planejadas, não implementadas)</p>
+</div>
 <ol>
   <li>O analista descreve o problema com suas próprias palavras</li>
   <li>O texto passa por mascaramento de dados sensíveis (LGPD)</li>
@@ -111,12 +117,27 @@ pre { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; paddin
   </tr>
 </table>
 
+<h3>Arquitetura</h3>
+
+<div style="text-align:center;margin:20px 0;">
+  <img src="arquitetura-atual.svg" alt="Arquitetura atual do sistema" style="max-width:560px;width:100%;">
+  <p style="font-size:11px;color:#94a3b8;margin-top:8px;">Diagrama: arquitetura atual em produção</p>
+</div>
+
+<details style="margin:16px 0;">
+  <summary style="cursor:pointer;color:#3b82f6;font-weight:600;font-size:13px;">Ver arquitetura planejada (evolução futura)</summary>
+  <div style="text-align:center;margin:16px 0;">
+    <img src="arquitetura-futura.svg" alt="Arquitetura futura" style="max-width:560px;width:100%;">
+    <p style="font-size:11px;color:#94a3b8;margin-top:8px;">Diagrama: arquitetura planejada (Cloud Run, Vertex AI, Firestore, Fine-tuning)</p>
+  </div>
+</details>
+
 <h3>Stack Técnica</h3>
 
 <table>
   <tr><th>Camada</th><th>Tecnologia</th><th>Justificativa</th></tr>
   <tr><td>Backend</td><td>Node.js + Express</td><td>Ecossistema web natural, SDK do Gemini nativo</td></tr>
-  <tr><td>Geração</td><td>Gemini Flash (Google AI)</td><td>Free tier generoso, JSON mode, bom em português</td></tr>
+  <tr><td>Geração</td><td>Gemini Flash Lite (Google AI)</td><td>Free tier generoso, JSON mode, bom em português</td></tr>
   <tr><td>Embeddings</td><td>gemini-embedding-001 (3072d)</td><td>Modelo mais recente do Google, busca semântica de alta qualidade</td></tr>
   <tr><td>Busca vetorial</td><td>Cosine similarity + cache em disco</td><td>Zero dependência externa, funciona offline</td></tr>
   <tr><td>Segurança</td><td>Pipeline DLP — 14 regras regex</td><td>Determinístico, instantâneo, auditável</td></tr>
@@ -173,7 +194,7 @@ cp .env.example .env</pre>
 </ol>
 
 <div class="callout">
-  <strong>Dica:</strong> No modo demo, os 6 tickets da lista possuem respostas pré-definidas de alta qualidade. Use-os para demonstrações sem risco de falha.
+  <strong>Dica:</strong> No modo demo, os 8 tickets da lista possuem respostas pré-definidas de alta qualidade. Use-os para demonstrações sem risco de falha.
 </div>
 
 <h3>2.2 Widget FreshService (MVP)</h3>
@@ -220,7 +241,7 @@ fdk pack --app-dir . --skip-coverage</pre>
 <table>
   <tr><th>Funcionalidade</th><th>O que faz</th><th>Como funciona internamente</th></tr>
   <tr><td><strong>Busca semântica</strong></td><td>Encontra tickets e KBs similares por significado</td><td>Texto → embedding de 3072 dimensões → cosine similarity contra base de 40 tickets + 13 KBs</td></tr>
-  <tr><td><strong>Geração de diagnóstico</strong></td><td>Produz diagnóstico + ações + fonte</td><td>Top 3 fontes são enviadas como contexto ao Gemini Flash, que gera resposta JSON estruturada</td></tr>
+  <tr><td><strong>Geração de diagnóstico</strong></td><td>Produz diagnóstico + ações + fonte</td><td>Top 3 fontes são enviadas como contexto ao Gemini Flash Lite, que gera resposta JSON estruturada</td></tr>
   <tr><td><strong>Mascaramento LGPD</strong></td><td>Dados sensíveis nunca chegam na IA</td><td>14 regras regex aplicadas na entrada (antes do embedding e geração) e na saída (resposta da IA)</td></tr>
   <tr><td><strong>Detecção de descrição vaga</strong></td><td>Não chuta quando não tem informação</td><td>Se descrição &lt;15 caracteres → modo triagem: perguntas de coleta ao invés de diagnóstico</td></tr>
   <tr><td><strong>Busca web automática</strong></td><td>Complementa quando base interna é insuficiente</td><td>Se confiança &lt;70% → Gemini busca docs de fabricantes, retorna título + fonte + data</td></tr>
@@ -410,6 +431,26 @@ fdk pack --app-dir . --skip-coverage</pre>
   <li><code>CHANGELOG.md</code> — Mudanças, curadoria de feedback, melhorias futuras</li>
   <li><code>RESPONSE_SCHEMA.md</code> — Contrato JSON da API</li>
 </ul>
+
+<h2 id="glossario">Glossário</h2>
+
+<table>
+  <tr><th>Termo</th><th>Definição</th></tr>
+  <tr><td><strong>RAG</strong></td><td>Retrieval-Augmented Generation. Padrão de IA que primeiro busca informações relevantes numa base de dados e depois gera resposta usando essas informações como contexto.</td></tr>
+  <tr><td><strong>Embedding</strong></td><td>Representação numérica (vetor) de um texto que captura seu significado semântico. Permite comparar textos por similaridade de sentido, não de palavras.</td></tr>
+  <tr><td><strong>Cosine Similarity</strong></td><td>Método matemático para medir quão similares dois vetores (embeddings) são. Resultado de 0 (nada similar) a 1 (idêntico), exibido como percentual.</td></tr>
+  <tr><td><strong>LLM</strong></td><td>Large Language Model. Modelo de IA treinado em grandes volumes de texto capaz de gerar linguagem natural. No sistema: gemini-flash-lite-latest.</td></tr>
+  <tr><td><strong>DLP</strong></td><td>Data Loss Prevention. Pipeline de segurança que impede vazamento de dados sensíveis. No sistema: 14 regras regex que mascaram dados antes do envio à IA.</td></tr>
+  <tr><td><strong>LGPD</strong></td><td>Lei Geral de Proteção de Dados. Legislação brasileira que regulamenta o tratamento de dados pessoais.</td></tr>
+  <tr><td><strong>Fallback</strong></td><td>Comportamento alternativo quando o caminho principal falha. No sistema: busca por tokens quando o Gemini está indisponível.</td></tr>
+  <tr><td><strong>Cold Start</strong></td><td>Tempo de inicialização quando um servidor serverless acorda após inatividade. No Render free tier: ~30 segundos.</td></tr>
+  <tr><td><strong>FDK</strong></td><td>Freshworks Developer Kit. Ferramenta de linha de comando para criar, validar e empacotar apps para o FreshService.</td></tr>
+  <tr><td><strong>iparams</strong></td><td>Installation Parameters. Configurações definidas pelo administrador durante a instalação de um Custom App no FreshService.</td></tr>
+  <tr><td><strong>MVP</strong></td><td>Minimum Viable Product. Versão mínima funcional de um produto, suficiente para validar a proposta de valor com usuários reais.</td></tr>
+  <tr><td><strong>POC</strong></td><td>Proof of Concept. Demonstração de que um conceito ou abordagem técnica é viável. No projeto: o ambiente local de demonstração.</td></tr>
+  <tr><td><strong>Busca por tokens</strong></td><td>Método simples de busca que compara palavras em comum entre dois textos (keyword matching). Usado como fallback quando a busca semântica não está disponível.</td></tr>
+  <tr><td><strong>Custom App</strong></td><td>Aplicação customizada que roda dentro do FreshService como extensão, acessível na interface do produto (ex: sidebar de ticket).</td></tr>
+</table>
 
 <div class="footer">
   <span>ClearIT Copilot — Squad Sherlock (B5) — Pulse Mais 2026</span>

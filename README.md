@@ -19,7 +19,7 @@ O analista sempre valida antes de agir — o sistema é consultivo, nunca execut
 ## Funcionalidades
 
 - **Busca semântica** — encontra tickets similares mesmo com títulos diferentes (gemini-embedding-001)
-- **Geração de diagnóstico** — Gemini Flash gera diagnóstico + passos de ação com fonte citada
+- **Geração de diagnóstico** — Gemini Flash Lite gera diagnóstico + passos de ação com fonte citada
 - **Mascaramento LGPD** — 14 regras de DLP garantem que dados sensíveis nunca chegam na IA
 - **Detecção de descrição vaga** — modo triagem quando o chamado é insuficiente
 - **Busca web sob demanda** — pesquisa documentação de fabricantes com resumo e análise de compatibilidade
@@ -140,7 +140,7 @@ Ver detalhes em [RESPONSE_SCHEMA.md](./RESPONSE_SCHEMA.md).
 | Componente | Tecnologia |
 |------------|-----------|
 | Backend | Node.js + Express |
-| IA (geração) | Gemini Flash (Google AI) |
+| IA (geração) | Gemini Flash Lite (Google AI) |
 | IA (embeddings) | gemini-embedding-001 (3072d) |
 | Busca vetorial | Cosine similarity em memória + cache em disco |
 | Segurança | Pipeline DLP com 14 regras regex |
