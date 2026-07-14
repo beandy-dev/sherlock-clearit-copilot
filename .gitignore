@@ -1,0 +1,25 @@
+# Dependências
+node_modules/
+
+# Ambiente
+.env
+.env.local
+.env.*.local
+
+# Cache e dados gerados em runtime
+data/embeddings-cache.json
+data/feedbacks.json
+
+# Sistema
+.DS_Store
+Thumbs.db
+*.log
+
+# IDEs
+.vscode/
+.idea/
+
+# FDK
+freshservice-app/dist/
+freshservice-app/node_modules/
+freshservice-app/.fdk/

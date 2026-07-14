@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Freshservice — ClearIT Copilot Demo</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+    <!-- Top Banner -->
+    <div class="top-banner">
+        <i class="fas fa-leaf"></i>
+        ClearIT Copilot — Demo
+    </div>
+
+    <div class="app-container">
+        <!-- Left Sidebar Navigation -->
+        <nav class="sidebar">
+            <div class="sidebar-logo">
+                <i class="fas fa-bolt"></i>
+            </div>
+            <div class="sidebar-nav">
+                <a href="#" class="nav-item" title="Freddy AI"><i class="fas fa-robot"></i></a>
+                <a href="#" class="nav-item" title="Dashboard"><i class="fas fa-th-large"></i></a>
+                <a href="#" class="nav-item active" title="Tickets"><i class="fas fa-ticket-alt"></i></a>
+                <a href="#" class="nav-item" title="Problems"><i class="fas fa-exclamation-triangle"></i></a>
+                <a href="#" class="nav-item" title="Changes"><i class="fas fa-exchange-alt"></i></a>
+                <a href="#" class="nav-item" title="Releases"><i class="fas fa-rocket"></i></a>
+                <a href="#" class="nav-item" title="Assets"><i class="fas fa-server"></i></a>
+                <a href="#" class="nav-item" title="Projects"><i class="fas fa-project-diagram"></i></a>
+            </div>
+            <div class="sidebar-bottom">
+                <a href="#" class="nav-item" title="Settings"><i class="fas fa-cog"></i></a>
+            </div>
+        </nav>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <!-- Main Views -->
+
+            <!-- Ticket List View -->
+            <div id="ticket-list-view" class="view active">
+                <div class="view-header">
+                    <h1><i class="fas fa-bars"></i> Tickets List — All Tickets</h1>
+                    <div class="header-actions">
+                        <div class="search-box">
+                            <i class="fas fa-search"></i>
+                            <input type="text" placeholder="Search tickets..." id="search-input">
+                        </div>
+                        <button class="btn-create" title="Novo ticket"><i class="fas fa-plus"></i></button>
+                        <button class="btn-filter" title="Filtros"><i class="fas fa-filter"></i></button>
+                    </div>
+                </div>
+                <div class="list-toolbar">
+                    <label><input type="checkbox"> Select all</label>
+                    <span class="sort-by">Sort by: <strong>Created Date</strong> <i class="fas fa-chevron-down"></i></span>
+                    <span class="ticket-count" id="ticket-count"></span>
+                </div>
+                <div class="ticket-table">
+                    <div class="table-header">
+                        <span class="col-check"></span>
+                        <span class="col-subject">Subject</span>
+                        <span class="col-requester">Requester</span>
+                        <span class="col-status">State</span>
+                        <span class="col-priority">Priority</span>
+                        <span class="col-sla">SLA</span>
+                    </div>
+                    <div id="ticket-rows"></div>
+                </div>
+            </div>
+
+            <!-- Ticket Detail View -->
+            <div id="ticket-detail-view" class="view">
+                <div class="detail-topbar">
+                    <div class="breadcrumb">
+                        <a href="#" id="back-to-list">Tickets</a> <i class="fas fa-chevron-right"></i> <span id="detail-ticket-id">#INC-20001</span>
+                    </div>
+                    <div class="detail-actions">
+                        <button class="btn-action"><i class="fas fa-star"></i></button>
+                        <button class="btn-action">Edit</button>
+                        <button class="btn-action btn-reply" id="btn-reply">Reply <i class="fas fa-chevron-down"></i></button>
+                        <button class="btn-action">Associate <i class="fas fa-chevron-down"></i></button>
+                        <button class="btn-action btn-close-ticket" id="btn-close-ticket">Close</button>
+                        <button class="btn-action"><i class="fas fa-chevron-left"></i></button>
+                        <button class="btn-action"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+                </div>
+                <div class="detail-status-bar">
+                    <span class="status-badge" id="detail-status">Open</span>
+                    <span class="sla-badge" id="detail-sla"><i class="fas fa-clock"></i> SLA: 3h 22min restantes</span>
+                </div>
+                <div class="detail-body">
+                    <div class="detail-main">
+                        <h2 id="detail-subject">Alerta de Alto Uso de Disco em CVM</h2>
+                        <div class="detail-meta">
+                            <span class="requester-avatar-lg" id="detail-avatar">A</span>
+                            <div class="meta-info">
+                                <span class="requester-name" id="detail-requester">Cliente Fictício</span>
+                                reported <span id="detail-date">2 hours ago</span> via <strong>Portal</strong>
+                            </div>
+                        </div>
+                        <div class="detail-tabs">
+                            <a href="#" class="tab active">Details</a>
+                            <a href="#" class="tab">Related tickets</a>
+                            <a href="#" class="tab">Tasks <span class="tab-badge">1</span></a>
+                            <a href="#" class="tab">Assets</a>
+                            <a href="#" class="tab">Activities</a>
+                        </div>
+                        <div class="detail-description">
+                            <h3>Description</h3>
+                            <div class="description-box" id="detail-description-text"></div>
+                        </div>
+
+                        <!-- Conversations Section -->
+                        <div class="detail-conversations">
+                            <h3>Conversations</h3>
+                            <div id="conversations-list"></div>
+                            <div class="conversation-actions" id="conversation-actions">
+                                <button class="conv-btn"><i class="fas fa-reply"></i> Reply</button>
+                                <button class="conv-btn"><i class="fas fa-share"></i> Forward</button>
+                                <button class="conv-btn"><i class="fas fa-sticky-note"></i> Add note</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Sidebar with Properties + Copilot -->
+                    <aside class="detail-sidebar">
+                        <div class="sidebar-panel properties-panel">
+                            <div class="panel-header">
+                                <span class="status-label" id="sidebar-status">Open</span>
+                            </div>
+                            <div class="property-row">
+                                <label>Priority</label>
+                                <span class="priority-badge" id="sidebar-priority"><i class="fas fa-square"></i> High</span>
+                            </div>
+                            <div class="property-row">
+                                <label>Category</label>
+                                <span id="sidebar-category">Infrastructure</span>
+                            </div>
+                            <div class="property-row">
+                                <label>Assigned to</label>
+                                <span id="sidebar-agent">Analista L1</span>
+                            </div>
+                            <div class="property-row">
+                                <label>First response due</label>
+                                <span class="sla-warning" id="sidebar-sla">by today, 4:00 PM</span>
+                            </div>
+                            <div class="property-row">
+                                <label>Resolution due</label>
+                                <span id="sidebar-resolution">by today, 8:00 PM</span>
+                            </div>
+                        </div>
+
+                        <!-- Requester Info -->
+                        <div class="sidebar-panel requester-panel">
+                            <div class="panel-header">
+                                <i class="fas fa-user"></i> Requester information
+                            </div>
+                            <div class="requester-info-body">
+                                <span class="requester-name-lg" id="sidebar-requester-name">Ana Paula Costa</span>
+                                <span class="requester-role">Coordenadora de Suporte</span>
+                            </div>
+                        </div>
+
+                        <!-- CLEARIT COPILOT WIDGET -->
+                        <div class="sidebar-panel copilot-panel">
+                            <div class="copilot-header">
+                                <div class="copilot-title">
+                                    <i class="fas fa-robot"></i> ClearIT Copilot
+                                </div>
+                                <span class="copilot-badge">AI</span>
+                            </div>
+                            <div class="copilot-body" id="copilot-body">
+                                <!-- INPUT SECTION: analista descreve/edita o problema -->
+                                <div id="copilot-input-section">
+                                    <label class="copilot-label">Descreva o problema ou sintoma:</label>
+                                    <textarea class="copilot-input" id="copilot-input" placeholder="Cole a descrição do chamado ou descreva o problema com suas palavras...&#10;&#10;Ex: CVM com disco cheio, snapshot falhando, cluster instável..."></textarea>
+                                    <button class="copilot-btn" id="copilot-analyze-btn">
+                                        <i class="fas fa-search"></i> Buscar Diagnóstico
+                                    </button>
+                                    <p class="copilot-hint">Ctrl+Enter para buscar • Busca em 20 tickets + KBs</p>
+                                </div>
+
+                                <!-- LOADING: pipeline animado -->
+                                <div id="copilot-loading" style="display:none;">
+                                    <div class="loading-steps">
+                                        <div class="load-step" id="load-step-1"><i class="fas fa-shield-alt"></i> Mascarando dados sensíveis (LGPD)</div>
+                                        <div class="load-step" id="load-step-2"><i class="fas fa-vector-square"></i> Gerando embedding da consulta</div>
+                                        <div class="load-step" id="load-step-3"><i class="fas fa-database"></i> Buscando similaridade (ChromaDB)</div>
+                                        <div class="load-step" id="load-step-4"><i class="fas fa-brain"></i> Gemini gerando diagnóstico</div>
+                                    </div>
+                                    <div class="loading-animation">
+                                        <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+                                    </div>
+                                </div>
+
+                                <!-- RESULT: diagnóstico + soluções + fonte + feedback -->
+                                <div id="copilot-result" style="display:none;"></div>
+
+                                <!-- CHAT FOLLOW-UP -->
+                                <div id="copilot-chat" style="display:none;">
+                                    <div class="chat-divider"><span>Pergunte mais sobre este diagnóstico</span></div>
+                                    <div class="chat-messages" id="chat-messages"></div>
+                                    <div class="chat-input-row">
+                                        <input type="text" class="chat-input" id="chat-input" placeholder="Ex: como executo esse comando?">
+                                        <button class="chat-send-btn" id="chat-send-btn"><i class="fas fa-arrow-up"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </aside>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- App Icons Sidebar (far right) -->
+    <aside class="app-sidebar">
+        <a href="#" class="app-icon" title="Info"><i class="fas fa-info-circle"></i></a>
+        <a href="#" class="app-icon" title="Contact"><i class="fas fa-user"></i></a>
+        <a href="#" class="app-icon" title="Notes"><i class="fas fa-sticky-note"></i></a>
+        <a href="#" class="app-icon" title="Time"><i class="fas fa-clock"></i></a>
+        <a href="#" class="app-icon active-app" title="ClearIT Copilot"><i class="fas fa-robot"></i></a>
+    </aside>
+
+    <!-- Toast Notifications -->
+    <div class="toast-container" id="toast-container"></div>
+
+    <script src="app.js"></script>
+</body>
+</html>

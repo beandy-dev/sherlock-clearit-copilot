@@ -1,0 +1,56 @@
+[
+  {
+    "id": 10234,
+    "subject": "Falha no backup noturno - Servidor PROD-DB-01",
+    "description": "Cliente reporta que o job de backup agendado para 02h00 não completou. Log indica timeout na conexão com o storage. Ambiente: Commvault v11, storage NetApp.",
+    "status": "open",
+    "priority": "high",
+    "category": "Backup",
+    "subcategory": "Commvault"
+  },
+  {
+    "id": 20002,
+    "subject": "VPN AnyConnect caindo constantemente ao transferir arquivos grandes",
+    "description": "Usuário tenta copiar arquivos do servidor de arquivos local pela VPN Cisco AnyConnect e a conexão cai no meio do processo. Ocorre com vários usuários de home office.",
+    "status": "open",
+    "priority": "medium",
+    "category": "Redes",
+    "subcategory": "VPN"
+  },
+  {
+    "id": 20003,
+    "subject": "Bloqueio de conta recorrente no Active Directory - felipe.silva",
+    "description": "Minha conta felipe.silva está sendo bloqueada de 5 em 5 minutos. Já alterei a senha em todas as minhas máquinas, mas o bloqueio continua ocorrendo no AD.",
+    "status": "open",
+    "priority": "medium",
+    "category": "Identidade",
+    "subcategory": "Active Directory"
+  },
+  {
+    "id": 20004,
+    "subject": "Aviso crítico: Certificado expirado no IIS do WebPortal de Homologação",
+    "description": "Ao tentar testar a nova versão do portal de homologação, recebemos tela de erro vermelha indicando certificado SSL expirado (NET::ERR_CERT_DATE_INVALID).",
+    "status": "open",
+    "priority": "medium",
+    "category": "Sistemas",
+    "subcategory": "IIS"
+  },
+  {
+    "id": 20005,
+    "subject": "Ajuda com internet",
+    "description": "Não funciona de jeito nenhum.",
+    "status": "open",
+    "priority": "low",
+    "category": "Redes",
+    "subcategory": "Outros"
+  },
+  {
+    "id": 20235,
+    "subject": "Alerta de CPU alta e lentidão no cluster Nutanix - Node 03",
+    "description": "O monitoramento Prism indica que o Node 03 está com consumo de CPU acima de 90% de forma persistente. Alguns usuários relatam lentidão nas VMs hospedadas. CVM do node 3 aparenta estar com acúmulo de logs.",
+    "status": "open",
+    "priority": "high",
+    "category": "Nutanix",
+    "subcategory": "Performance"
+  }
+]
