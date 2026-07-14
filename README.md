@@ -23,7 +23,7 @@ O analista sempre valida antes de agir — o sistema é consultivo, nunca execut
 - **Busca web sob demanda** — pesquisa documentação de fabricantes com resumo e análise de compatibilidade
 - **Chat follow-up** — perguntas adicionais mantendo contexto do problema
 - **Feedback loop** — analista avalia respostas para melhoria contínua
-- **Integração FreshService** — widget disponível em repositório separado ([clearit-copilot-freshservice-app](https://github.com/beandy-dev/clearit-copilot-freshservice-app))
+- **Integração FreshService** — widget disponível em repositório separado ([clearit-copilot-freshservice-api](https://github.com/beandy-dev/clearit-copilot-freshservice-api))
 - **Fallback gracioso** — funciona sem internet usando busca por tokens
 
 ---
@@ -52,7 +52,7 @@ Ver diagramas detalhados e visão futura em [Contexto Técnico](docs/technical-c
 | [Resultados de Testes](docs/resultados-testes.md) | 15 testes automatizados — busca, vagueza, LGPD, chat, performance |
 | [Contrato de API](RESPONSE_SCHEMA.md) | Schema JSON de resposta dos endpoints |
 | [Changelog e Backlog](CHANGELOG.md) | Mudanças recentes, curadoria de feedback, melhorias futuras |
-| [Widget FreshService](https://github.com/beandy-dev/clearit-copilot-freshservice-app) | Custom App: repositório separado |
+| [Widget FreshService](https://github.com/beandy-dev/clearit-copilot-freshservice-api) | Custom App: repositório separado |
 
 ---
 
@@ -202,7 +202,7 @@ Para colocar o sistema em produção, você precisa configurar:
 
 ### Widget FreshService
 
-O widget é mantido em repositório separado: [clearit-copilot-freshservice-app](https://github.com/beandy-dev/clearit-copilot-freshservice-app)
+O widget é mantido em repositório separado: [clearit-copilot-freshservice-api](https://github.com/beandy-dev/clearit-copilot-freshservice-api)
 
 Consulte o README daquele repositório para instruções de empacotamento e deploy.
 
@@ -229,7 +229,7 @@ Ver [CHANGELOG.md](./CHANGELOG.md) para lista completa de melhorias futuras, inc
 | Repo | Descrição |
 |------|-----------|
 | [clearit-copilot-backend](https://github.com/beandy-dev/clearit-copilot-backend) | Backend em produção (Render) |
-| [clearit-copilot-freshservice-app](https://github.com/beandy-dev/clearit-copilot-freshservice-app) | Widget FreshService (Custom App) |
+| [clearit-copilot-freshservice-api](https://github.com/beandy-dev/clearit-copilot-freshservice-api) | Widget FreshService (Custom App) |
 
 ---
 

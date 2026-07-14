@@ -21,9 +21,9 @@
 
 ### Arquitetura Atual (MVP)
 
-![Fluxo de Diagnóstico do Analista](Analista%20Problem%20Diagnosis-2026-07-10-051032.svg)
+<img src="Analista%20Problem%20Diagnosis-2026-07-10-051032.svg" alt="Fluxo de Diagnóstico do Analista" width="600">
 
-![Arquitetura de Design Detalhada](Analista%20Problem%20Diagnosis%20Architecture%20Design-2026-07-10-051306.svg)
+<img src="Analista%20Problem%20Diagnosis%20Architecture%20Design-2026-07-10-051306.svg" alt="Arquitetura de Design Detalhada" width="600">
 
 ```
 ┌──────────────────────────────────────────────────────────┐
