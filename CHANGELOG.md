@@ -31,6 +31,8 @@ Todas as mudanças notáveis do projeto ClearIT Copilot (versão final/produçã
 - Contraste dos botões e card de busca web (acessibilidade)
 - `.gitignore` da POC não cobria `.env` — corrigido
 - Removidos arquivos que não pertencem ao projeto (Onion, presentation.html)
+- **Timeout 30s no frontend** — se o Gemini não responder em 30s, exibe mensagem ao invés de loading infinito
+- **Anti-crash no servidor** — handlers para `uncaughtException` e `unhandledRejection` previnem que o processo morra por erros da API do Gemini
 
 ---
 
