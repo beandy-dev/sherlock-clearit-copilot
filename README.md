@@ -224,6 +224,15 @@ Ver [CHANGELOG.md](./CHANGELOG.md) para lista completa de melhorias futuras, inc
 
 ---
 
+## Repositórios Relacionados
+
+| Repo | Descrição |
+|------|-----------|
+| [clearit-copilot-backend](https://github.com/beandy-dev/clearit-copilot-backend) | Backend em produção (Render) |
+| [clearit-copilot-freshservice-app](https://github.com/beandy-dev/clearit-copilot-freshservice-app) | Widget FreshService (Custom App) |
+
+---
+
 ## Equipe
 
 | Membro | Frente |
@@ -236,6 +245,3 @@ Ver [CHANGELOG.md](./CHANGELOG.md) para lista completa de melhorias futuras, inc
 
 ---
 
-## Licença
-
-MIT
