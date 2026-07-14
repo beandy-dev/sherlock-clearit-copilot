@@ -588,3 +588,13 @@ async function sendChatMessage() {
 
 // ===== INIT =====
 renderTicketList();
+
+// ===== MANUAL DO SISTEMA =====
+function showManual() {
+    document.querySelectorAll('.view').forEach(v => v.style.display = 'none');
+    document.getElementById('manual-view').style.display = 'block';
+}
+function hideManual() {
+    document.getElementById('manual-view').style.display = 'none';
+    document.getElementById('ticket-list-view').style.display = 'block';
+}

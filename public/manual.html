@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Manual do Sistema — ClearIT Copilot</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Inter', sans-serif; background: #ffffff; color: #1e293b; line-height: 1.8; font-size: 14px; }
+.container { max-width: 860px; margin: 0 auto; padding: 50px 40px; }
+.manual-header { margin-bottom: 40px; padding-bottom: 24px; border-bottom: 2px solid #e2e8f0; }
+.manual-header h1 { font-size: 32px; font-weight: 800; color: #0f172a; margin-bottom: 6px; }
+.manual-header p { font-size: 15px; color: #64748b; }
+.manual-header .badges { margin-top: 12px; display: flex; gap: 8px; flex-wrap: wrap; }
+.manual-header .badge { background: #f1f5f9; padding: 4px 12px; border-radius: 20px; font-size: 11px; font-weight: 600; color: #475569; }
+h2 { font-size: 22px; font-weight: 700; color: #0f172a; margin-top: 44px; margin-bottom: 16px; padding-bottom: 8px; border-bottom: 1px solid #e2e8f0; }
+h3 { font-size: 16px; font-weight: 600; color: #334155; margin-top: 24px; margin-bottom: 10px; }
+h4 { font-size: 14px; font-weight: 600; color: #475569; margin-top: 18px; margin-bottom: 8px; }
+p { margin-bottom: 12px; color: #334155; }
+strong { color: #0f172a; }
+ul, ol { padding-left: 22px; margin: 10px 0 16px; }
+li { margin-bottom: 8px; color: #334155; }
+table { width: 100%; border-collapse: collapse; margin: 14px 0 20px; font-size: 13px; }
+th { background: #f8fafc; color: #475569; font-weight: 600; text-align: left; padding: 10px 14px; border: 1px solid #e2e8f0; font-size: 12px; }
+td { padding: 10px 14px; border: 1px solid #e2e8f0; color: #334155; vertical-align: top; }
+.callout { background: #f8fafc; border-left: 3px solid #3b82f6; padding: 14px 18px; border-radius: 0 6px 6px 0; margin: 16px 0; }
+.callout-warn { border-left-color: #f59e0b; background: #fffbeb; }
+.callout-error { border-left-color: #ef4444; background: #fef2f2; }
+code { background: #f1f5f9; padding: 2px 6px; border-radius: 4px; font-size: 12px; font-family: 'JetBrains Mono', monospace; color: #475569; }
+pre { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 16px; margin: 12px 0; overflow-x: auto; font-size: 12px; font-family: 'JetBrains Mono', monospace; color: #334155; line-height: 1.6; }
+.footer { margin-top: 50px; padding-top: 20px; border-top: 1px solid #e2e8f0; font-size: 12px; color: #94a3b8; display: flex; justify-content: space-between; }
+.back-link { display: inline-block; margin-bottom: 20px; color: #3b82f6; text-decoration: none; font-size: 13px; font-weight: 500; }
+.back-link:hover { text-decoration: underline; }
+.toc { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 20px 24px; margin: 20px 0; }
+.toc h3 { margin-top: 0; color: #0f172a; }
+.toc ol { margin-bottom: 0; }
+.toc a { color: #3b82f6; text-decoration: none; }
+.toc a:hover { text-decoration: underline; }
+</style>
+</head>
+<body>
+<div class="container">
+
+<a href="/" class="back-link">← Voltar ao sistema</a>
+
+<div class="manual-header">
+  <h1>Manual do Sistema</h1>
+  <p>ClearIT Copilot — IA consultiva para analistas de suporte técnico L1</p>
+  <div class="badges">
+    <span class="badge">ClearIT</span>
+    <span class="badge">Squad Sherlock (B5)</span>
+    <span class="badge">Pulse Mais 2026</span>
+    <span class="badge">Versão 1.1</span>
+    <span class="badge">Julho 2026</span>
+  </div>
+</div>
+
+<div class="toc">
+  <h3>Índice</h3>
+  <ol>
+    <li><a href="#descricao">Descrição do Sistema</a></li>
+    <li><a href="#como-usar">Como Usar</a></li>
+    <li><a href="#funcionalidades">Funcionalidades</a></li>
+    <li><a href="#configuracao">Configuração</a></li>
+    <li><a href="#problemas">Possíveis Problemas e Soluções</a></li>
+    <li><a href="#recomendacoes">Recomendações de Uso</a></li>
+    <li><a href="#nao-funciona">O que Ainda Não Está Funcionando</a></li>
+    <li><a href="#proximos-passos">Próximos Passos e Evolução</a></li>
+    <li><a href="#equipe">Equipe e Repositórios</a></li>
+  </ol>
+</div>
+
+<!-- SEÇÃO 1 -->
+<h2 id="descricao">1. Descrição do Sistema</h2>
+
+<p>O ClearIT Copilot é um assistente de inteligência artificial desenvolvido para auxiliar analistas de suporte técnico Nível 1 (L1) no diagnóstico e resolução de incidentes. O sistema busca por <strong>significado</strong> (não por palavra-chave), conectando problemas atuais com soluções já encontradas anteriormente — mesmo quando descritos com termos completamente diferentes.</p>
+
+<p>O sistema é <strong>consultivo</strong>: ele sugere diagnósticos e ações, mas a decisão final é sempre do analista humano. Nenhuma ação é executada automaticamente.</p>
+
+<h3>Como o sistema resolve o problema</h3>
+<ol>
+  <li>O analista descreve o problema com suas próprias palavras</li>
+  <li>O texto passa por mascaramento de dados sensíveis (LGPD)</li>
+  <li>O sistema converte o texto em representação vetorial (embedding)</li>
+  <li>Busca por similaridade em 3 fontes: tickets históricos, bases de conhecimento e API do FreshService</li>
+  <li>O modelo Gemini gera um diagnóstico estruturado com base nas fontes encontradas</li>
+  <li>O resultado inclui: diagnóstico, passos de ação, fonte citada e nível de confiança</li>
+</ol>
+
+<h3>Componentes do Projeto</h3>
+
+<p>O projeto é dividido em 3 repositórios independentes:</p>
+
+<table>
+  <tr><th>Componente</th><th>Função</th><th>Onde roda</th></tr>
+  <tr>
+    <td><strong>POC / Demo</strong><br><code>sherlock-clearit-copilot</code></td>
+    <td>Ambiente completo para demonstração e desenvolvimento. Interface inspirada no FreshService com backend integrado. Funciona offline (modo demo) ou com IA real.</td>
+    <td>Localmente (<code>localhost:3000</code>)</td>
+  </tr>
+  <tr>
+    <td><strong>Backend (MVP)</strong><br><code>clearit-copilot-backend</code></td>
+    <td>Servidor de produção que recebe requisições, processa com IA e retorna diagnósticos. Serve tanto o widget quanto qualquer cliente via API REST.</td>
+    <td>Render (nuvem)</td>
+  </tr>
+  <tr>
+    <td><strong>Widget (MVP)</strong><br><code>clearit-copilot-freshservice-api</code></td>
+    <td>Custom App instalável na sidebar de tickets do FreshService. Pré-preenche com dados do chamado e consome o backend.</td>
+    <td>FreshService</td>
+  </tr>
+</table>
+
+<h3>Stack Técnica</h3>
+
+<table>
+  <tr><th>Camada</th><th>Tecnologia</th><th>Justificativa</th></tr>
+  <tr><td>Backend</td><td>Node.js + Express</td><td>Ecossistema web natural, SDK do Gemini nativo</td></tr>
+  <tr><td>Geração</td><td>Gemini Flash (Google AI)</td><td>Free tier generoso, JSON mode, bom em português</td></tr>
+  <tr><td>Embeddings</td><td>gemini-embedding-001 (3072d)</td><td>Modelo mais recente do Google, busca semântica de alta qualidade</td></tr>
+  <tr><td>Busca vetorial</td><td>Cosine similarity + cache em disco</td><td>Zero dependência externa, funciona offline</td></tr>
+  <tr><td>Segurança</td><td>Pipeline DLP — 14 regras regex</td><td>Determinístico, instantâneo, auditável</td></tr>
+  <tr><td>Frontend</td><td>HTML + CSS + Vanilla JS</td><td>Sem framework, leve, sem build step</td></tr>
+  <tr><td>Widget</td><td>FreshService Platform 3.0 (FDK 10)</td><td>Integração nativa com o ITSM do cliente</td></tr>
+  <tr><td>Deploy</td><td>Render</td><td>Deploy automático via GitHub, HTTPS incluso, free tier</td></tr>
+</table>
+
+<!-- SEÇÃO 2 -->
+<h2 id="como-usar">2. Como Usar</h2>
+
+<h3>2.1 POC — Demonstração Local</h3>
+
+<h4>Pré-requisitos</h4>
+<ul>
+  <li>Node.js 18 ou superior instalado</li>
+  <li>(Opcional) Chave de API do Gemini — <a href="https://aistudio.google.com/apikey" target="_blank">Google AI Studio</a></li>
+</ul>
+
+<h4>Instalação</h4>
+<pre>git clone https://github.com/beandy-dev/sherlock-clearit-copilot.git
+cd sherlock-clearit-copilot
+npm install
+cp .env.example .env</pre>
+
+<h4>Configuração</h4>
+<p>Edite o arquivo <code>.env</code> (opcional — sem ele o sistema funciona em modo demo):</p>
+<pre>GEMINI_API_KEY=AIzaSy...sua_chave_aqui</pre>
+
+<h4>Execução</h4>
+<pre>npm start</pre>
+<p>Acesse <strong>http://localhost:3000</strong> no navegador.</p>
+
+<h4>Passo a passo de uso</h4>
+<ol>
+  <li>Na <strong>lista de tickets</strong> à esquerda, clique em um chamado para ver seus detalhes</li>
+  <li>Na <strong>sidebar direita</strong> (ClearIT Copilot), o campo já vem pré-preenchido com a descrição do ticket</li>
+  <li>Clique <strong>"Analisar"</strong> para solicitar o diagnóstico</li>
+  <li>Aguarde a resposta (2-15 segundos, dependendo do modo):
+    <ul>
+      <li><strong>Modo Demo</strong> (sem API key): resposta instantânea com dados simulados</li>
+      <li><strong>Modo Live</strong> (com API key): busca semântica real + geração com Gemini</li>
+    </ul>
+  </li>
+  <li>O resultado exibe: <strong>diagnóstico</strong>, <strong>ações recomendadas</strong>, <strong>fonte</strong> e <strong>nível de confiança</strong></li>
+  <li>Após o resultado, você pode:
+    <ul>
+      <li><strong>Dar feedback</strong> (Útil / Parcial / Não ajudou)</li>
+      <li><strong>Regerar</strong> a resposta</li>
+      <li><strong>Buscar na web</strong> (pesquisa documentação de fabricantes)</li>
+      <li><strong>Chat</strong> — fazer perguntas adicionais mantendo o contexto</li>
+    </ul>
+  </li>
+</ol>
+
+<div class="callout">
+  <strong>Dica:</strong> No modo demo, os 6 tickets da lista possuem respostas pré-definidas de alta qualidade. Use-os para demonstrações sem risco de falha.
+</div>
+
+<h3>2.2 Widget FreshService (MVP)</h3>
+
+<h4>Pré-requisitos para instalação</h4>
+<ul>
+  <li>Node.js 24.11 (via <code>nvm install 24.11</code>)</li>
+  <li>FDK 10 (<code>npm install https://cdn.freshdev.io/fdk/latest-v24.tgz -g</code>)</li>
+  <li>Conta de administrador no FreshService</li>
+</ul>
+
+<h4>Empacotamento</h4>
+<pre>git clone https://github.com/beandy-dev/clearit-copilot-freshservice-api.git
+cd clearit-copilot-freshservice-api
+nvm use 24.11
+fdk validate --app-dir .
+fdk pack --app-dir . --skip-coverage</pre>
+
+<h4>Instalação no FreshService</h4>
+<ol>
+  <li>Acesse <strong>Admin → Apps → Custom Apps</strong></li>
+  <li>Clique <strong>New App → Custom App</strong></li>
+  <li>Upload o arquivo <code>.zip</code> gerado na pasta <code>dist/</code></li>
+  <li>Preencha o nome e salve</li>
+  <li>Na tela de instalação, configure a <strong>URL do Backend</strong> (ex: <code>https://seu-backend.onrender.com</code>)</li>
+  <li>Instale</li>
+</ol>
+
+<h4>Uso</h4>
+<ol>
+  <li>Abra qualquer ticket no FreshService</li>
+  <li>O widget aparece na <strong>sidebar direita</strong> com a descrição já pré-preenchida</li>
+  <li>Clique <strong>"Buscar Diagnóstico"</strong></li>
+  <li>Mesmas opções da POC: feedback, regerar, buscar na web, chat</li>
+</ol>
+
+<div class="callout callout-warn">
+  <strong>Atenção:</strong> O FDK 10 exige Node.js exatamente na versão 24.11.x. Versões superiores (24.15+) ou inferiores (20, 18) não funcionam para empacotar. Porém para <em>rodar</em> o backend, qualquer Node 18+ funciona.
+</div>
+
+<!-- SEÇÃO 3 -->
+<h2 id="funcionalidades">3. Funcionalidades</h2>
+
+<table>
+  <tr><th>Funcionalidade</th><th>O que faz</th><th>Como funciona internamente</th></tr>
+  <tr><td><strong>Busca semântica</strong></td><td>Encontra tickets e KBs similares por significado</td><td>Texto → embedding de 3072 dimensões → cosine similarity contra base de 40 tickets + 13 KBs</td></tr>
+  <tr><td><strong>Geração de diagnóstico</strong></td><td>Produz diagnóstico + ações + fonte</td><td>Top 3 fontes são enviadas como contexto ao Gemini Flash, que gera resposta JSON estruturada</td></tr>
+  <tr><td><strong>Mascaramento LGPD</strong></td><td>Dados sensíveis nunca chegam na IA</td><td>14 regras regex aplicadas na entrada (antes do embedding e geração) e na saída (resposta da IA)</td></tr>
+  <tr><td><strong>Detecção de descrição vaga</strong></td><td>Não chuta quando não tem informação</td><td>Se descrição &lt;15 caracteres → modo triagem: perguntas de coleta ao invés de diagnóstico</td></tr>
+  <tr><td><strong>Busca web automática</strong></td><td>Complementa quando base interna é insuficiente</td><td>Se confiança &lt;70% → Gemini busca docs de fabricantes, retorna título + fonte + data</td></tr>
+  <tr><td><strong>Busca web sob demanda</strong></td><td>Analista pede pesquisa externa</td><td>Endpoint dedicado retorna resumo textual + fontes + análise de compatibilidade</td></tr>
+  <tr><td><strong>Análise de compatibilidade</strong></td><td>Compara diagnóstico interno com fontes externas</td><td>Segunda chamada ao Gemini avalia: compatível / parcialmente compatível / divergente</td></tr>
+  <tr><td><strong>Regerar resposta</strong></td><td>Nova geração com mesmos dados</td><td>Re-chama /api/analyze mantendo contexto</td></tr>
+  <tr><td><strong>Chat follow-up</strong></td><td>Perguntas adicionais</td><td>Gemini recebe contexto do ticket + diagnóstico anterior + nova pergunta</td></tr>
+  <tr><td><strong>Feedback</strong></td><td>Avaliação do analista</td><td>Útil / Parcial (com edição de texto) / Não ajudou → salvo em JSON para melhoria futura</td></tr>
+  <tr><td><strong>Fallback offline</strong></td><td>Funciona sem internet</td><td>Busca por tokens (keyword matching com remoção de stopwords) + respostas pré-definidas</td></tr>
+  <tr><td><strong>Timeout 30s</strong></td><td>Não trava a interface</td><td>AbortController no frontend — se não responder em 30s, exibe mensagem e permite tentar novamente</td></tr>
+  <tr><td><strong>Anti-crash</strong></td><td>Servidor não morre</td><td>Handlers para uncaughtException e unhandledRejection logam o erro e mantêm o processo</td></tr>
+</table>
+
+<h3>Dados mascarados (LGPD)</h3>
+<p>Os seguintes padrões são removidos antes de qualquer contato com a IA:</p>
+<table>
+  <tr><th>Tipo</th><th>Exemplo</th><th>Resultado</th></tr>
+  <tr><td>CPF</td><td>123.456.789-00</td><td><code>[CPF_MASCARADO]</code></td></tr>
+  <tr><td>CNPJ</td><td>12.345.678/0001-90</td><td><code>[CNPJ_MASCARADO]</code></td></tr>
+  <tr><td>Email</td><td>joao@empresa.com</td><td><code>[EMAIL_MASCARADO]</code></td></tr>
+  <tr><td>IPv4</td><td>192.168.1.50</td><td><code>[IP_MASCARADO]</code></td></tr>
+  <tr><td>IPv6</td><td>fe80::1</td><td><code>[IPV6_MASCARADO]</code></td></tr>
+  <tr><td>Telefone</td><td>(11) 98765-4321</td><td><code>[TELEFONE_MASCARADO]</code></td></tr>
+  <tr><td>MAC</td><td>00:1A:2B:3C:4D:5E</td><td><code>[MAC_MASCARADO]</code></td></tr>
+  <tr><td>API Key</td><td>AIzaSy...</td><td><code>[API_KEY_MASCARADA]</code></td></tr>
+  <tr><td>Credenciais</td><td>senha=abc123</td><td><code>[CREDENCIAL_MASCARADA]</code></td></tr>
+  <tr><td>Login corporativo</td><td>joao.silva</td><td><code>[LOGIN_MASCARADO]</code></td></tr>
+  <tr><td>Servidor</td><td>PROD-DB-01</td><td><code>[SERVIDOR_MASCARADO]</code></td></tr>
+  <tr><td>Domínio interno</td><td>srv.clearit.local</td><td><code>[DOMINIO_INTERNO_MASCARADO]</code></td></tr>
+  <tr><td>Caminho UNC</td><td>\\SRV\dados</td><td><code>[CAMINHO_UNC_MASCARADO]</code></td></tr>
+</table>
+
+<!-- SEÇÃO 4 -->
+<h2 id="configuracao">4. Configuração</h2>
+
+<h3>Variáveis de ambiente (Backend)</h3>
+
+<table>
+  <tr><th>Variável</th><th>Obrigatória</th><th>Descrição</th><th>Onde configurar</th></tr>
+  <tr><td><code>GEMINI_API_KEY</code></td><td>Sim</td><td>Chave do Google AI Studio. Sem ela, o sistema opera em fallback (busca por tokens).</td><td><code>.env</code> (local) ou Painel do Render (produção)</td></tr>
+  <tr><td><code>FRESHSERVICE_DOMAIN</code></td><td>Não</td><td>Subdomínio do FreshService (ex: <code>suaempresa</code> de suaempresa.freshservice.com). Habilita busca em tickets reais via API.</td><td>Idem</td></tr>
+  <tr><td><code>FRESHSERVICE_API_KEY</code></td><td>Não</td><td>API key do FreshService (Profile Settings → API Key). Necessária junto com DOMAIN.</td><td>Idem</td></tr>
+  <tr><td><code>PORT</code></td><td>Não</td><td>Porta do servidor (default: 3000). No Render, é definida automaticamente.</td><td>Idem</td></tr>
+</table>
+
+<h3>Configuração do Widget (iparams)</h3>
+
+<p>Durante a instalação do widget no FreshService, o administrador configura:</p>
+
+<table>
+  <tr><th>Parâmetro</th><th>Descrição</th><th>Exemplo</th></tr>
+  <tr><td><code>backend_url</code></td><td>URL do backend que processa as requisições</td><td><code>https://clearit-copilot.onrender.com</code> (temporário)</td></tr>
+</table>
+
+<div class="callout">
+  <strong>Servidor temporário:</strong> O backend em <code>clearit-copilot.onrender.com</code> está disponível para testes e avaliação enquanto o programa Pulse Mais 2026 estiver ativo. O widget funciona sem configuração adicional enquanto esse servidor estiver no ar. Após desativação, será necessário fazer deploy próprio seguindo as instruções do repositório <a href="https://github.com/beandy-dev/clearit-copilot-backend">clearit-copilot-backend</a>.
+</div>
+
+<div class="callout callout-warn">
+  <strong>Importante:</strong> O backend deve ser acessível via HTTPS. O FreshService bloqueia requisições HTTP (Mixed Content). Serviços como Render já fornecem HTTPS automaticamente.
+</div>
+
+<h3>Obter a chave do Gemini</h3>
+<ol>
+  <li>Acesse <a href="https://aistudio.google.com/apikey" target="_blank">Google AI Studio</a></li>
+  <li>Clique "Create API Key"</li>
+  <li>Copie a chave (começa com <code>AIzaSy</code>)</li>
+  <li>Cole no <code>.env</code> ou nas variáveis de ambiente do Render</li>
+</ol>
+
+<!-- SEÇÃO 5 -->
+<h2 id="problemas">5. Possíveis Problemas e Soluções</h2>
+
+<table>
+  <tr><th>Sintoma</th><th>Causa provável</th><th>Solução</th></tr>
+  <tr><td>Loading por mais de 30 segundos</td><td>Gemini demorou para responder (sobrecarga ou rate limit)</td><td>O sistema exibe mensagem de timeout automaticamente. Clique "Nova consulta" e tente novamente após alguns segundos.</td></tr>
+  <tr><td>Resposta genérica ou de baixa qualidade</td><td>Sistema operando sem API key (modo fallback)</td><td>Configure <code>GEMINI_API_KEY</code> válida no <code>.env</code> e reinicie o servidor.</td></tr>
+  <tr><td>"Não foi possível conectar ao backend"</td><td>Backend offline, URL errada ou cold start do Render</td><td>Aguarde ~30 segundos (cold start) e tente novamente. Verifique se a URL do backend está correta.</td></tr>
+  <tr><td>Widget não aparece no FreshService</td><td>App não instalado ou desabilitado</td><td>Admin → Apps → verificar se o ClearIT Copilot está ativo.</td></tr>
+  <tr><td>Feedback não confirma envio</td><td>Cold start do Render (~30s primeira request)</td><td>O sistema tenta 2x automaticamente. Se falhar, tente novamente após o backend acordar.</td></tr>
+  <tr><td>Busca web sem resultados</td><td>Problema muito específico sem referências no treinamento do Gemini</td><td>Normal em cenários de nicho. Use o chat para pedir informações mais genéricas sobre o tema.</td></tr>
+  <tr><td>Confiança muito baixa (&lt;70%)</td><td>Problema não existe na base interna (40 tickets + 13 KBs)</td><td>Esperado. O sistema avisa automaticamente e busca na web. Use "Buscar na web" para complementar.</td></tr>
+  <tr><td>Erro <code>EADDRINUSE</code> ao iniciar</td><td>Porta 3000 já está em uso</td><td>Execute <code>kill $(lsof -t -i:3000)</code> e inicie novamente.</td></tr>
+  <tr><td>Primeira consulta demora 10-20s</td><td>Cache de embeddings sendo gerado pela primeira vez</td><td>Normal. O sistema gera embeddings para 40 tickets + 13 KBs. Consultas seguintes são rápidas (~2s).</td></tr>
+  <tr><td>"Platform version below 3.0" ao subir widget</td><td>Manifesto antigo</td><td>Usar <code>platform-version: "3.0"</code> sem campo <code>product</code> no manifest.json.</td></tr>
+  <tr><td>FDK não aceita Node 20</td><td>FDK 10 exige Node 24.11</td><td><code>nvm install 24.11 && nvm use 24.11</code> antes de empacotar.</td></tr>
+</table>
+
+<!-- SEÇÃO 6 -->
+<h2 id="recomendacoes">6. Recomendações de Uso</h2>
+
+<h3>Para obter melhores resultados</h3>
+<ul>
+  <li><strong>Descreva com detalhes</strong> — "Backup falhou" é vago. "Commvault job de backup deu timeout no storage NetApp às 2h, servidor PROD-DB-01" gera diagnóstico preciso.</li>
+  <li><strong>Inclua contexto técnico</strong> — mencione o produto (Nutanix, Commvault, Cisco), o ambiente (produção/homologação) e quando começou.</li>
+  <li><strong>Verifique a fonte</strong> — toda sugestão indica de onde veio (Ticket #X, KB #Y). Valide antes de aplicar.</li>
+  <li><strong>Use o chat para comandos</strong> — após o diagnóstico, pergunte "qual comando específico?" ou "como verifico isso?".</li>
+  <li><strong>Dê feedback sempre</strong> — isso melhora o sistema. "Parcial" com edição é mais valioso que "Útil" sem contexto.</li>
+</ul>
+
+<h3>O que NÃO fazer</h3>
+<ul>
+  <li><strong>Não aplique sugestões sem validar</strong> — o sistema pode errar. Confiança &lt;70% merece atenção redobrada.</li>
+  <li><strong>Não cole dados sensíveis reais esperando que apareçam na resposta</strong> — eles serão mascarados. O diagnóstico funcionará normalmente, mas os dados reais não serão visíveis na saída.</li>
+  <li><strong>Não use para problemas fora do domínio</strong> — a base foi construída para infraestrutura (Nutanix, Commvault, VPN, AD, IIS). Problemas de software aplicativo terão confiança baixa.</li>
+</ul>
+
+<div class="callout">
+  <strong>Princípio do sistema:</strong> Uma sugestão errada aplicada sem validação é pior que nenhuma sugestão. Por isso o sistema sempre mostra a fonte e o nível de confiança — para que o analista tome a decisão informada.
+</div>
+
+<!-- SEÇÃO 7 -->
+<h2 id="nao-funciona">7. O que Ainda Não Está Funcionando</h2>
+
+<table>
+  <tr><th>Item</th><th>Status</th><th>Motivo</th><th>Impacto</th></tr>
+  <tr><td>Autenticação</td><td>Não implementado</td><td>MVP priorizou validação da IA. Auth é próximo passo.</td><td>API acessível por qualquer um com a URL.</td></tr>
+  <tr><td>Testes automatizados</td><td>Não implementado</td><td>Tempo insuficiente. 15 testes manuais foram realizados.</td><td>Mudanças futuras podem introduzir regressão.</td></tr>
+  <tr><td>Fine-tuning do modelo</td><td>Não implementado</td><td>Requer 500+ interações validadas acumuladas.</td><td>Modelo usa conhecimento genérico, não especializado no domínio ClearIT.</td></tr>
+  <tr><td>Re-ingestão de feedback</td><td>Não implementado</td><td>Requer pipeline de curadoria (evitar poluição da base).</td><td>Feedbacks são salvos mas não melhoram a busca automaticamente.</td></tr>
+  <tr><td>Logging estruturado</td><td>Não implementado</td><td>MVP usa console.log.</td><td>Difícil diagnosticar problemas em produção sem dashboards.</td></tr>
+  <tr><td>Links verificados na busca web</td><td>Limitação técnica</td><td>Google Custom Search API é pago. Gemini gera URLs aproximadas.</td><td>Links sugeridos podem não existir. Resumo textual é confiável.</td></tr>
+  <tr><td>Busca web em tempo real</td><td>Limitação técnica</td><td>O Gemini não acessa a internet durante a geração — usa conhecimento do treinamento. Busca real exigiria Google Search Grounding (pago) ou Custom Search API.</td><td>Informações podem estar desatualizadas. Datas retornadas são aproximadas.</td></tr>
+  <tr><td>Multi-idioma</td><td>Não implementado</td><td>Sem demanda. ClearIT opera em português.</td><td>Nenhum para o cenário atual.</td></tr>
+</table>
+
+<!-- SEÇÃO 8 -->
+<h2 id="proximos-passos">8. Próximos Passos e Evolução</h2>
+
+<h3>Curto prazo (pós-entrega)</h3>
+<ul>
+  <li><strong>Autenticação</strong> — JWT ou API key por instalação. Proteger a API.</li>
+  <li><strong>Testes automatizados</strong> — Unit + integration tests para garantir estabilidade.</li>
+  <li><strong>Logging estruturado</strong> — Tempo por etapa (mascaramento, embedding, busca, geração). Alertas para erros.</li>
+  <li><strong>Pipeline de curadoria de feedback</strong> — Antes de re-ingerir: verificar duplicidade (&gt;85%), temporalidade (&gt;24h), volume (2+ analistas), revisão humana.</li>
+</ul>
+
+<h3>Médio prazo</h3>
+<ul>
+  <li><strong>Cache inteligente</strong> — Mesma consulta em 30 min → retorna cache sem chamar Gemini.</li>
+  <li><strong>Dashboard de métricas</strong> — Taxa de aceitação por categoria, gaps de KB, temas recorrentes.</li>
+  <li><strong>Google Custom Search API</strong> — Links reais verificados + informações atualizadas em tempo real. Atualmente o Gemini usa conhecimento do treinamento (pode estar desatualizado). Com busca real, o sistema traria documentação vigente dos fabricantes com link direto para a fonte.</li>
+  <li><strong>Webhook proativo</strong> — Alerta do Zabbix/Datadog → pré-diagnóstico automático → ticket nasce com sugestão.</li>
+</ul>
+
+<h3>Longo prazo</h3>
+<ul>
+  <li><strong>Fine-tuning</strong> — Modelo especializado no domínio ClearIT após 500+ interações curadas.</li>
+  <li><strong>Multi-tenant (SaaS)</strong> — Base isolada por cliente, billing por uso.</li>
+  <li><strong>Integração Slack / Teams</strong> — Bot com diagnóstico direto no canal de suporte.</li>
+  <li><strong>Análise de tendências</strong> — Identificar picos de problemas similares e alertar o gestor proativamente.</li>
+</ul>
+
+<div class="callout">
+  <strong>Sugestão da banca avaliadora (11/07/2026):</strong> Implementar regulação sobre o que é aceito como entrada para melhoria do banco de dados. Respostas aprovadas não devem ser re-ingeridas automaticamente — precisam passar por validação de duplicidade, análise temporal e revisão por analista sênior antes de enriquecer a base vetorial.
+</div>
+
+<!-- SEÇÃO 9 -->
+<h2 id="equipe">9. Equipe e Repositórios</h2>
+
+<h3>Squad Sherlock (B5) — Pulse Mais 2026</h3>
+
+<table>
+  <tr><th>Membro</th><th>Frente</th></tr>
+  <tr><td>Beatriz Andrade Lourenço</td><td>Tecnologia, Produto e Negócios</td></tr>
+  <tr><td>Davi da Paz Mota</td><td>Tecnologia e Produto</td></tr>
+  <tr><td>Maria Eduarda Ferreira Santos</td><td>Tecnologia e Produto</td></tr>
+  <tr><td>Maria Eloisa Gomes da Conceição</td><td>Negócios e Estratégia</td></tr>
+  <tr><td>Phelipe Alexandre de Almeida</td><td>Tecnologia e Produto</td></tr>
+</table>
+
+<h3>Repositórios</h3>
+
+<table>
+  <tr><th>Repositório</th><th>Tipo</th><th>Descrição</th></tr>
+  <tr><td><a href="https://github.com/beandy-dev/sherlock-clearit-copilot">sherlock-clearit-copilot</a></td><td>POC / Demo</td><td>Ambiente completo de demonstração + documentação técnica</td></tr>
+  <tr><td><a href="https://github.com/beandy-dev/clearit-copilot-backend">clearit-copilot-backend</a></td><td>Backend (MVP)</td><td>Servidor em produção no Render</td></tr>
+  <tr><td><a href="https://github.com/beandy-dev/clearit-copilot-freshservice-api">clearit-copilot-freshservice-api</a></td><td>Widget (MVP)</td><td>Custom App FreshService (sidebar de ticket)</td></tr>
+</table>
+
+<h3>Documentação técnica disponível no repositório da POC</h3>
+<ul>
+  <li><code>docs/business-context-lite.md</code> — Contexto de negócio, personas, critérios de aceite</li>
+  <li><code>docs/technical-context-lite.md</code> — Stack, arquitetura, diagramas</li>
+  <li><code>docs/decisoes-tecnicas.md</code> — Justificativa de cada escolha e o que não foi feito</li>
+  <li><code>docs/resultados-testes.md</code> — 15 testes documentados com resultados</li>
+  <li><code>CHANGELOG.md</code> — Mudanças, curadoria de feedback, melhorias futuras</li>
+  <li><code>RESPONSE_SCHEMA.md</code> — Contrato JSON da API</li>
+</ul>
+
+<div class="footer">
+  <span>ClearIT Copilot — Squad Sherlock (B5) — Pulse Mais 2026</span>
+  <span>Julho 2026</span>
+</div>
+
+</div>
+</body>
+</html>
