@@ -233,6 +233,8 @@ Ver [CHANGELOG.md](./CHANGELOG.md) para lista completa de melhorias futuras, inc
 | [clearit-copilot-backend](https://github.com/beandy-dev/clearit-copilot-backend) | Backend em produção (Render) |
 | [clearit-copilot-freshservice-api](https://github.com/beandy-dev/clearit-copilot-freshservice-api) | Widget FreshService (Custom App) |
 
+📖 **Manual do Sistema:** [https://clearit-copilot.onrender.com/manual.html](https://clearit-copilot.onrender.com/manual.html)
+
 ---
 
 ## Equipe
