@@ -2,6 +2,44 @@
 
 Todas as mudanças notáveis do projeto ClearIT Copilot (versão final/produção) estão documentadas neste arquivo.
 
+## [1.2.0] - 2026-07-14 (entrega final)
+
+> Organização dos repositórios, manual do sistema, diagramas de arquitetura e melhorias de documentação para entrega.
+
+### Adicionado
+
+- **Manual do sistema** — página HTML completa (`/manual.html`) com 10 seções: descrição, como usar (POC + MVP), funcionalidades, configuração, problemas/soluções, recomendações, limitações, próximos passos, equipe e glossário
+- **Manual centralizado no backend** — servido via HTTPS pelo Render, acessível pelo widget e pela POC
+- **Botão "Manual"** na POC (header azul) e no widget (header ao lado do badge)
+- **Diagramas SVG** — fluxo do analista, arquitetura atual (Mermaid) e arquitetura futura (Mermaid)
+- **Sidebar fixa no manual** — navegação lateral dark com accent gradient, números por seção, zoom nas imagens
+- **Glossário** — 14 termos técnicos explicados (RAG, embedding, cosine similarity, LLM, DLP, etc.)
+- **Busca web e regerar no widget** — mesmas features da POC agora no Custom App do FreshService
+- **GitHub da equipe** — links nos READMEs e no manual
+- **Referência ao manual** — link nos 3 READMEs + aviso sobre servidor temporário
+
+### Alterado
+
+- **Technical context** reorganizado — seção 3 separada em: fluxo de consulta, arquitetura atual, arquitetura futura (com explicação por bloco)
+- **SVGs renomeados** — `fluxo-diagnostico.svg`, `arquitetura-atual.svg`, `arquitetura-futura.svg` (nomes descritivos)
+- **POC consome manual do backend** — não tem mais cópia local do manual
+- **Widget: feedback antes de regerar/web** — mesma ordem da POC
+- **Widget: link do manual no header** — mais visível
+
+### Corrigido
+
+- Referências a `freshservice-app/` removidas do README da POC (pasta não existe mais)
+- "Gemini Flash" corrigido para "Gemini Flash Lite" no manual e README
+- "6 tickets" corrigido para "8 tickets" no manual
+- SVGs referenciados corretamente no manual (nomes sem espaço)
+- Link "Voltar ao sistema" removido do manual no backend (não faz sentido fora da POC)
+
+### Documentado
+
+- Por que o manual e SVGs estão no backend (README do deploy)
+- Aviso de servidor temporário (Render) no widget e no backend
+- Nota sobre design inspirado no FreshService (README da POC)
+
 ## [1.1.0] - 2026-07-13 (pós-apresentação)
 
 > Alterações realizadas após a apresentação final (11/07) para organização do repositório, documentação e melhorias sugeridas pela banca avaliadora.
