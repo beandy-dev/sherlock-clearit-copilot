@@ -57,9 +57,9 @@ Quando o L1 não encontra a informação após pesquisar em todas as fontes disp
 
 | ID | Feature | Status | Descrição |
 |---|---|---|---|
-| F-01 | Busca Semântica de Tickets/KBs | Pronto para Dev | RAG para busca de tickets e KBs relevantes no banco vetorial |
-| F-02 | Geração de Diagnóstico e Resolução | Pronto para Dev | LLM (Gemini) gera diagnóstico e sugestões a partir das fontes |
-| F-03 | Guia de Troubleshooting Vago | Pronto para Dev | Guia passo a passo quando o chamado for muito vago/incompleto |
+| F-01 | Busca Semântica de Tickets/KBs | ✅ Concluído | RAG para busca de tickets e KBs relevantes no banco vetorial |
+| F-02 | Geração de Diagnóstico e Resolução | ✅ Concluído | LLM (Gemini) gera diagnóstico e sugestões a partir das fontes |
+| F-03 | Guia de Troubleshooting Vago | ✅ Concluído | Guia passo a passo quando o chamado for muito vago/incompleto |
 
 ---
 
@@ -75,11 +75,11 @@ Quando o L1 não encontra a informação após pesquisar em todas as fontes disp
 ### Feature F-02: Geração de Diagnóstico e Resolução
 - **História do Usuário:** Como Felipe, quero receber um diagnóstico pré-pronto e instruções de como corrigir o incidente atual com base nas fontes encontradas, para que eu não precise ler cada ticket manualmente para extrair a solução.
 - **Critérios de Aceite:**
-  1. O Sherlock deve gerar um relatório curto contendo: "Causa Provável", "Ações Recomendadas" e "Fontes de Referência".
+  1. O Copilot deve gerar um relatório curto contendo: "Causa Provável", "Ações Recomendadas" e "Fontes de Referência".
   2. Todas as sugestões devem conter a fonte de onde a informação foi tirada (link ou ID do ticket).
   3. Se houver contradição nas fontes, a IA deve indicar ambos os caminhos.
 
 ### Feature F-03: Guia de Troubleshooting Vago
 - **História do Usuário:** Como Felipe, quando receber um chamado vago como "A internet não funciona", quero que a IA me sugira perguntas de triagem ou um checklist básico de testes a serem executados, para que eu possa obter mais detalhes do cliente.
 - **Critérios de Aceite:**
-  1. Se a descrição contiver menos de 15 caracteres ou for considerada muito genérica, o Sherlock deve apresentar um checklist interativo de perguntas de troubleshooting para L1.
+  1. Se a descrição contiver menos de 15 caracteres ou for considerada muito genérica, o Copilot deve apresentar um checklist interativo de perguntas de troubleshooting para L1.
