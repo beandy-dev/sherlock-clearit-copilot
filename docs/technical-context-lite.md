@@ -19,98 +19,42 @@
 
 ## 3. Arquitetura Lógica
 
-### Arquitetura Atual (MVP)
+### 3.1 Fluxo de uma Consulta
 
 <img src="fluxo-diagnostico.svg" alt="Fluxo de Diagnóstico do Analista" width="600">
 
-O diagrama acima mostra o fluxo conceitual de uma consulta: da entrada do texto pelo analista até o resultado final com diagnóstico e fontes. Etapas finais (Firestore, Fine-tuning) são planejadas, não implementadas.
+Mostra o caminho de uma consulta do analista: entrada do texto → mascaramento LGPD → embedding → busca semântica → geração com Gemini → resultado com diagnóstico, fontes e confiança. Se a descrição for vaga, entra em modo triagem. Se a confiança for baixa, busca na web automaticamente.
 
-### Arquitetura Atual (em produção)
+> Nota: as etapas finais do diagrama (Firestore, Fine-tuning) representam a evolução planejada, não o estado atual.
+
+---
+
+### 3.2 Arquitetura Atual (em produção)
 
 <img src="arquitetura-atual.svg" alt="Arquitetura Atual" width="600">
 
-A arquitetura em produção utiliza Node.js + Express no Render, embeddings com cache em disco (JSON), busca por cosine similarity em memória e geração com Gemini Flash Lite.
+O sistema atual utiliza:
+- **Interface:** POC (localhost) ou Widget FreshService (sidebar)
+- **Backend:** Node.js + Express no Render
+- **IA:** gemini-embedding-001 (embeddings) + gemini-flash-lite-latest (geração)
+- **Busca:** Cosine similarity em memória com cache de embeddings em disco (JSON)
+- **Dados:** 40 tickets + 13 KBs em `mock-tickets.json`, feedback em `feedbacks.json`
+- **Segurança:** Pipeline DLP com 14 regras regex (entrada + saída)
 
-### Arquitetura Futura (evolução planejada)
+---
 
-<details>
-<summary><strong>Expandir arquitetura futura</strong></summary>
+### 3.3 Arquitetura Futura (evolução planejada)
 
 <img src="arquitetura-futura.svg" alt="Arquitetura Futura" width="600">
 
-A evolução planejada migra para Cloud Run (serverless), Vertex AI Vector Search (ANN para escalar), Firestore (feedback + métricas), Google Search Grounding (links reais), cache Redis e fine-tuning periódico com feedback curado.
-
-</details>
-
-```
-┌──────────────────────────────────────────────────────────┐
-│              INTERFACE DE USUÁRIO (Navegador)            │
-│  ┌───────────────────────┐   ┌────────────────────────┐  │
-│  │   Painel FreshService │   │   ClearIT Copilot     │  │
-│  │  (Seleção de Chamado) │   │ (Diagnósticos e Chats) │  │
-│  └───────────┬───────────┘   └───────────▲────────────┘  │
-└──────────────┼───────────────────────────┼───────────────┘
-               │                           │
-               │ POST /api/analyze         │ JSON Response
-               ▼                           │
-┌──────────────┼───────────────────────────┼───────────────┐
-│              SERVIDOR BACKEND (Node.js/Express)          │
-│   ┌──────────▼───────────┐   ┌───────────┴────────────┐  │
-│   │    RAG Controller    ├──►│  Prompt Constructor    │  │
-│   └──────────┬───────────┘   └───────────┬────────────┘  │
-│              │                           │               │
-│              ▼                           ▼               │
-│   ┌──────────────────────┐   ┌────────────────────────┐  │
-│   │   Similarity Matcher │   │    Gemini API Client   │  │
-│   │  (embeddings + cache)│   │   (Flash + Embedding)  │  │
-│   └──────────────────────┘   └───────────┬────────────┘  │
-│              │                           │               │
-│              ▼                           │               │
-│   ┌──────────────────────┐              │               │
-│   │   DLP Pipeline       │              │               │
-│   │   (14 regras LGPD)   │              │               │
-│   └──────────────────────┘              │               │
-└──────────────────────────────────────────┼───────────────┘
-                                           ▼
-                                ┌─────────────────────┐
-                                │   Google Gemini API │
-                                └─────────────────────┘
-```
-
-### Arquitetura Futura (Produção)
-
-```
-┌─────────────────────────────────────────────────────────────┐
-│                    CONSUMIDORES                              │
-│  FreshService (sidebar) · Slack/Teams · Chrome Extension    │
-└──────────────────────────┬──────────────────────────────────┘
-                           │
-                           ▼
-┌──────────────────────────────────────────────────────────────┐
-│                API Gateway + Auth (JWT/API Key)               │
-└──────────────────────────┬───────────────────────────────────┘
-                           │
-                           ▼
-┌──────────────────────────────────────────────────────────────┐
-│              BACKEND (Cloud Run — serverless)                 │
-│                                                              │
-│  [DLP Pipeline] → [Embedding] → [Vector Search] → [Gemini]  │
-│                                                              │
-│  + Cache Redis · Logging estruturado · Rate limiting         │
-└──────────────┬─────────────────────┬─────────────────────────┘
-               │                     │
-               ▼                     ▼
-┌──────────────────────┐  ┌─────────────────────────────────┐
-│ Firestore            │  │ Vertex AI Vector Search         │
-│ (feedback, métricas) │  │ (embeddings, busca ANN)         │
-└──────────────────────┘  └─────────────────────────────────┘
-               │
-               ▼
-┌──────────────────────────────────────────────────────────────┐
-│              PIPELINE DE CURADORIA                            │
-│  Duplicidade → Temporalidade → Volume → Revisão → Ingestão  │
-└──────────────────────────────────────────────────────────────┘
-```
+A evolução planejada migra para:
+- **Cloud Run** (serverless, escala automática)
+- **Vertex AI Vector Search** (índice ANN para milhões de docs)
+- **Cloud Firestore** (feedback + métricas)
+- **Google Search Grounding** (links reais em tempo real)
+- **Cache Redis** (30 min por consulta)
+- **API Gateway** (JWT + rate limiting)
+- **Fine-tuning** periódico com feedback curado
 
 ## 4. Planos de Impl. Ativos
 
