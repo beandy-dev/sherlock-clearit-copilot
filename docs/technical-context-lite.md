@@ -21,14 +21,24 @@
 
 ### Arquitetura Atual (MVP)
 
-<img src="Analista%20Problem%20Diagnosis-2026-07-10-051032.svg" alt="Fluxo de Diagnóstico do Analista" width="600">
+<img src="fluxo-diagnostico.svg" alt="Fluxo de Diagnóstico do Analista" width="600">
+
+O diagrama acima mostra o fluxo conceitual de uma consulta: da entrada do texto pelo analista até o resultado final com diagnóstico e fontes. Etapas finais (Firestore, Fine-tuning) são planejadas, não implementadas.
+
+### Arquitetura Atual (em produção)
 
 <img src="arquitetura-atual.svg" alt="Arquitetura Atual" width="600">
 
+A arquitetura em produção utiliza Node.js + Express no Render, embeddings com cache em disco (JSON), busca por cosine similarity em memória e geração com Gemini Flash Lite.
+
+### Arquitetura Futura (evolução planejada)
+
 <details>
-<summary><strong>Ver arquitetura futura planejada</strong></summary>
+<summary><strong>Expandir arquitetura futura</strong></summary>
 
 <img src="arquitetura-futura.svg" alt="Arquitetura Futura" width="600">
+
+A evolução planejada migra para Cloud Run (serverless), Vertex AI Vector Search (ANN para escalar), Firestore (feedback + métricas), Google Search Grounding (links reais), cache Redis e fine-tuning periódico com feedback curado.
 
 </details>
 
