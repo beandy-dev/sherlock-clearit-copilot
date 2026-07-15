@@ -241,11 +241,11 @@ Ver [CHANGELOG.md](./CHANGELOG.md) para lista completa de melhorias futuras, inc
 
 | Membro | Frente |
 |--------|--------|
-| Beatriz Andrade Lourenço | Tecnologia, Produto e Negócios |
-| Davi da Paz Mota | Tecnologia e Produto |
-| Maria Eduarda Ferreira Santos | Tecnologia e Produto |
-| Maria Eloisa Gomes da Conceição | Negócios e Estratégia |
-| Phelipe Alexandre de Almeida | Tecnologia e Produto |
+| [Beatriz Andrade Lourenço](https://linkedin.com/in/anbeaty) | Tecnologia, Produto e Negócios |
+| [Davi da Paz Mota](https://linkedin.com/in/davidapaz05) | Tecnologia e Produto |
+| [Maria Eduarda Ferreira Santos](https://linkedin.com/in/dudazfd) | Tecnologia e Produto |
+| [Maria Eloisa Gomes da Conceição](https://linkedin.com/in/mariaeloisa69) | Negócios e Estratégia |
+| [Phelipe Alexandre de Almeida](https://linkedin.com/in/phelipe134) | Tecnologia e Produto |
 
 ---
 
