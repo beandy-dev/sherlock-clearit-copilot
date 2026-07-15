@@ -328,7 +328,7 @@ app.post('/api/chat', async (req, res) => {
     const model = genAI.getGenerativeModel({ model: "gemini-flash-lite-latest", generationConfig: { temperature: 0.2 } });
 
     const prompt = `
-      Você é o ClearIT Copilot, respondendo perguntas do analista Felipe sobre um chamado de TI.
+      Você é o ClearIT Copilot, respondendo perguntas do analista sobre um chamado de TI.
       Sintomas: "${maskedDesc}"
       Diagnóstico Inicial: "${diagnosis}"
       Ações Recomendadas: ${JSON.stringify(actions)}
