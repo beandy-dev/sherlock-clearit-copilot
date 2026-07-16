@@ -185,7 +185,7 @@ Registro das escolhas feitas durante o desenvolvimento, com justificativa e trad
 **Por que não:** MVP de 2 semanas com foco em validar a IA, não a segurança. API roda em URL não divulgada. Primeiro passo pós-entrega.
 
 ### Testes automatizados
-**Por que não:** Tempo insuficiente. Testes foram manuais (15 cenários via curl). Unit tests são próximo passo antes de qualquer refatoração.
+**Status:** Implementado (v1.2.1). 19 testes com Vitest cobrindo mascaramento LGPD, busca por tokens, cosine similarity e integridade dos dados. Executar com `npm test`.
 
 ### Logging estruturado
 **Por que não:** `console.log` resolve para debug local. Em produção precisa de Cloud Logging + alertas, mas para MVP não justifica a complexidade.
