@@ -56,7 +56,26 @@ A evolução planejada migra para:
 - **API Gateway** (JWT + rate limiting)
 - **Fine-tuning** periódico com feedback curado
 
-## 4. Planos de Impl. Ativos
+## 4. Testes
+
+### Testes automatizados (Vitest)
+
+Executar com `npm test`. 19 testes cobrindo:
+
+| Categoria | Testes | O que valida |
+|-----------|--------|-------------|
+| Mascaramento LGPD | 6 | CPF, email, IP, API key, falsos positivos, múltiplos dados |
+| Busca por tokens | 4 | Encontra tickets/KBs, vazio pra termos sem match, ordenação |
+| Cosine similarity | 5 | Vetores idênticos, opostos, ortogonais, nulos, tamanhos diferentes |
+| Integridade dos dados | 4 | 40 tickets, 13 KBs, campos obrigatórios presentes |
+
+### Testes manuais
+
+15 cenários documentados em [resultados-testes.md](resultados-testes.md) cobrindo busca semântica, vagueza, low confidence, mascaramento, feedback, chat e performance.
+
+---
+
+## 5. Planos de Impl. Ativos
 
 ### Plano para F-01 & F-02 (Busca Semântica & Diagnóstico RAG)
 1. **Modelagem de Dados (`data/mock-tickets.json`):** Estruturar 20 tickets históricos e 10 artigos de KB baseados nas dores mapeadas (Commvault, NetApp, Redes, Active Directory).

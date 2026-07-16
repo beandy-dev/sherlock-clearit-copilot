@@ -354,3 +354,19 @@ Na resposta do chat, o sistema mascarou corretamente `arquivo.log` → `[LOGIN_M
 | 13 | Crash nos logs | Nenhum crash (erros tratados) | ✅ |
 
 ### Total: 13/13 testes de segurança passaram. Nenhuma vulnerabilidade crítica.
+
+---
+
+## Testes Automatizados (adicionados em 15/07/2026)
+
+Além dos testes manuais acima, o projeto conta com **19 testes automatizados** usando Vitest (`npm test`):
+
+- **Mascaramento LGPD (6 testes)** — valida que CPF, email, IP, API keys são mascarados corretamente e que termos técnicos comuns (app.js, server.js) não geram falsos positivos
+- **Busca por tokens (4 testes)** — valida o fallback offline: encontra tickets e KBs por keyword, retorna vazio pra termos sem correspondência, resultados ordenados
+- **Cosine similarity (5 testes)** — valida a função matemática: vetores idênticos (1), opostos (-1), ortogonais (0), nulos (0), tamanhos diferentes (0)
+- **Integridade dos dados (4 testes)** — valida que a base tem 40 tickets e 13 KBs com todos os campos obrigatórios (id, subject, description, tags, resolution_notes)
+
+Executar:
+```bash
+npm test
+```
