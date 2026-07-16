@@ -560,6 +560,8 @@ async function sendChatMessage() {
     try {
         const response = window.currentResponse;
         const ticket = window.currentTicket;
+        const chatController = new AbortController();
+        const chatTimeout = setTimeout(() => chatController.abort(), 45000);
         const res = await fetch(`${API_URL}/api/chat`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -568,8 +570,10 @@ async function sendChatMessage() {
                 ticketDesc: ticket ? ticket.texto : '',
                 diagnosis: response ? (response.diagnostico || response.diagnosis || '') : '',
                 actions: response ? (response.solucoes || response.troubleshooting || []) : []
-            })
+            }),
+            signal: chatController.signal
         });
+        clearTimeout(chatTimeout);
 
         const loadingEl = document.getElementById(loadingId);
         if (res.ok) {
@@ -581,7 +585,7 @@ async function sendChatMessage() {
         }
     } catch (e) {
         const loadingEl = document.getElementById(loadingId);
-        if (loadingEl) loadingEl.outerHTML = `<div class="chat-msg bot">Backend indisponível.</div>`;
+        if (loadingEl) loadingEl.outerHTML = `<div class="chat-msg bot">${e.name === 'AbortError' ? 'Tempo esgotado. Tente novamente.' : 'Backend indisponível.'}</div>`;
     }
     messagesDiv.scrollTop = messagesDiv.scrollHeight;
 }
