@@ -216,6 +216,10 @@ async function runCopilotAnalysis(query) {
             console.log("Backend indisponível, usando fallback:", e.message);
             window.usedGemini = false;
             response = copilotResponses[window.currentTicketId] || findBestMatch(query);
+            response.offline = true;
+            response.confianca = 0;
+            response.fonte = "Modo offline — resposta baseada em dados locais";
+            response.fonteType = "troubleshooting";
         }
     }
 
@@ -279,19 +283,31 @@ function showCopilotResult(response, query) {
         </div>
     `;
 
-    // Confiança — logo após as fontes
-    contentHtml += `
-        <div class="result-section">
-            <div class="result-section-title">📊 Nível de Confiança na Base Interna</div>
-            <div class="confidence-bar">
-                <div class="confidence-fill">
-                    <div class="confidence-fill-inner" style="width:0%" data-target="${confianca}"></div>
-                </div>
-                <span class="confidence-label ${confianca < 60 ? 'low-confidence' : ''}">${confianca}%</span>
+    // Aviso de modo offline
+    if (response.offline) {
+        contentHtml += `
+            <div class="result-section" style="background:#fffbeb;border:1px solid #fbbf24;border-radius:8px;padding:12px 16px;margin-top:12px;">
+                <p style="color:#92400e;font-weight:600;margin:0;">⚠️ Modo offline — resposta baseada em dados locais (sem IA)</p>
+                <p style="color:#92400e;font-size:12px;margin:4px 0 0;">O servidor não respondeu. Esta sugestão é aproximada e não passou pela análise da IA.</p>
             </div>
-            ${confianca < 70 ? '<p class="confidence-warning">⚠️ Confiança baixa — recomendado buscar fontes externas</p>' : ''}
-        </div>
-    `;
+        `;
+    }
+
+    // Confiança (esconde se 0)
+    if (confianca > 0) {
+        contentHtml += `
+            <div class="result-section">
+                <div class="result-section-title">📊 Nível de Confiança na Base Interna</div>
+                <div class="confidence-bar">
+                    <div class="confidence-fill">
+                        <div class="confidence-fill-inner" style="width:0%" data-target="${confianca}"></div>
+                    </div>
+                    <span class="confidence-label ${confianca < 60 ? 'low-confidence' : ''}">${confianca}%</span>
+                </div>
+                ${confianca < 70 ? '<p class="confidence-warning">⚠️ Confiança baixa — recomendado buscar fontes externas</p>' : ''}
+            </div>
+        `;
+    }
 
     // Ações do analista (critério de aceite #5: aceitar, editar ou rejeitar)
     contentHtml += `
@@ -445,6 +461,8 @@ async function regenerateResponse() {
 
     // Re-chama o analyze com os mesmos dados
     try {
+        const regenController = new AbortController();
+        const regenTimeout = setTimeout(() => regenController.abort(), 30000);
         const res = await fetch(`${API_URL}/api/analyze`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -452,8 +470,10 @@ async function regenerateResponse() {
                 ticketId: window.currentTicketId || null,
                 subject: window.selectedTicket ? window.selectedTicket.subject : '',
                 description: window.currentQuery || ''
-            })
+            }),
+            signal: regenController.signal
         });
+        clearTimeout(regenTimeout);
 
         const data = await res.json();
         const response = {
@@ -472,8 +492,8 @@ async function regenerateResponse() {
         };
         renderResult(response, window.currentQuery);
     } catch (e) {
-        btn.textContent = '⚠️ Erro';
-        setTimeout(() => { btn.textContent = '🔄 Regerar'; btn.disabled = false; }, 2000);
+        btn.textContent = e.name === 'AbortError' ? '⚠️ Tempo esgotado' : '⚠️ Erro';
+        setTimeout(() => { btn.textContent = '🔄 Regerar'; btn.disabled = false; }, 3000);
     }
 }
 
