@@ -119,6 +119,20 @@ Funciona com busca por tokens (keyword matching). Qualidade menor, mas o serviç
 
 ---
 
+## Testes
+
+```bash
+npm test
+```
+
+19 testes automatizados com Vitest:
+- **Mascaramento LGPD** — CPF, email, IP, API key, falsos positivos, múltiplos dados
+- **Busca por tokens** — encontra tickets, KBs, vazio pra lixo, ordenação
+- **Cosine similarity** — vetores idênticos, opostos, ortogonais, nulos
+- **Integridade dos dados** — 40 tickets, 13 KBs, campos obrigatórios
+
+---
+
 ## API
 
 | Endpoint | Método | Descrição |
@@ -234,6 +248,8 @@ Ver [CHANGELOG.md](./CHANGELOG.md) para lista completa de melhorias futuras, inc
 | [clearit-copilot-freshservice-api](https://github.com/beandy-dev/clearit-copilot-freshservice-api) | Widget FreshService (Custom App) |
 
 📖 **Manual do Sistema:** [https://clearit-copilot.onrender.com/manual.html](https://clearit-copilot.onrender.com/manual.html)
+
+> Se o manual demorar para carregar (~30s), é o servidor no Render acordando (free tier). Aguarde e recarregue.
 
 ---
 

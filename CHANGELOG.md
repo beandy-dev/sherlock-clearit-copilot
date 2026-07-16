@@ -2,6 +2,16 @@
 
 Todas as mudanças notáveis do projeto ClearIT Copilot (versão final/produção) estão documentadas neste arquivo.
 
+## [1.2.1] - 2026-07-15
+
+### Adicionado
+
+- **Testes automatizados** — 19 testes com Vitest cobrindo: mascaramento LGPD (6), busca por tokens (4), cosine similarity (5), integridade dos dados (4). Executar com `npm test`.
+- **Botão Manual na página de ticket** — agora acessível tanto na lista quanto no detalhe do ticket
+- **Aviso de cold start** nos READMEs — informa que o manual pode demorar ~30s na primeira carga (Render free tier)
+
+---
+
 ## [1.2.0] - 2026-07-14 (entrega final)
 
 > Organização dos repositórios, manual do sistema, diagramas de arquitetura e melhorias de documentação para entrega.
