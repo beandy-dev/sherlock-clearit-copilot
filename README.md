@@ -6,6 +6,13 @@ IA consultiva para analistas de suporte técnico L1. Busca por significado, não
 
 ---
 
+## Demos
+
+- 🎬 [Demo POC (v1.0.0)](https://youtu.be/OzFgao1UyYg)
+- 🎬 [Demo Widget FreshService (v1.0.0)](https://youtu.be/pO-qKFHeRY4)
+
+---
+
 ## O que é
 
 O ClearIT Copilot é um serviço de IA que recebe a descrição de um problema de suporte, busca em múltiplas fontes (tickets históricos, bases de conhecimento, documentação de fabricantes) e retorna um diagnóstico estruturado com fonte citada e nível de confiança.
