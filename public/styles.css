@@ -1,6 +1,6 @@
 /* ===== RESET & BASE ===== */
 * { margin: 0; padding: 0; box-sizing: border-box; }
-body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; background: #f8fafc; color: #1e293b; font-size: 14px; height: 100vh; overflow: hidden; }
+body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; background: #1e293b; color: #1e293b; font-size: 14px; height: 100vh; overflow: hidden; }
 a { text-decoration: none; color: inherit; }
 
 /* ===== TOP BANNER ===== */
