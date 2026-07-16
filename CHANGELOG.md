@@ -10,6 +10,7 @@ Todas as mudanças notáveis do projeto ClearIT Copilot (versão final/produçã
 - **Botão Manual na página de ticket** — agora acessível tanto na lista quanto no detalhe do ticket
 - **Aviso de cold start** nos READMEs — informa que o manual pode demorar ~30s na primeira carga (Render free tier)
 - **Prompt do chat otimizado** — simplificado para evitar timeout. Chat agora recusa perguntas fora do contexto do chamado ("Só posso ajudar com o chamado em análise"). Timeout do chat: 45s.
+- **Vídeos de demo** — linkados nos 3 READMEs + manual (YouTube, v1.0.0)
 
 ---
 
