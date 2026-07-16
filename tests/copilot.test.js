@@ -29,7 +29,7 @@ describe('Mascaramento LGPD', () => {
   });
 
   it('mascara API key do Google', () => {
-    const result = maskSensitiveDataSafe('Key: AIzaSyBLl_K_S5tf3co0QLpmNATr4f2mSMnAj_w');
+    const result = maskSensitiveDataSafe('Key: AIzaSyFAKE_TEST_KEY_NOT_REAL_1234567');
     expect(result).toContain('[API_KEY_MASCARADA]');
     expect(result).not.toContain('AIzaSy');
   });
